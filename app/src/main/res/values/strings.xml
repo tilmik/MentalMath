@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">MentalMath</string>
+    <string name="welcome_message">Welcome to Mental Math!</string>
+    <string-array name="operators">
+        <item>Addition</item>
+        <item>Subtraction</item>
+        <item>Multiplication</item>
+        <item>Division</item>
+    </string-array>
+    <string name="summary_total_problems">Problems attempted %1$d</string>
+    <string name="summary_accuracy">Accuracy %.2f%%</string>
+    <string name="summary_speed">Average %.3fs per problem</string>
+</resources>
