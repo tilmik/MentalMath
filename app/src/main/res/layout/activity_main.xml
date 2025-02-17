@@ -25,7 +25,7 @@
         android:layout_width="135dp"
         android:layout_height="67dp"
         android:layout_marginTop="40dp"
-        android:text="Start"
+        android:text="@string/start_button"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="none"
-            android:text="Choose operator"
+            android:text="@string/choose_operator"
             android:textSize="22sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:padding="10dp"
-        android:text="Hard difficulty"
+        android:text="@string/hard_difficulty"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -99,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Summary"
+                android:text="@string/summary_header"
                 android:textStyle="bold"
                 android:textSize="22sp" />
         </TableRow>

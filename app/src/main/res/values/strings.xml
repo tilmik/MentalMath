@@ -1,12 +1,22 @@
 <resources>
     <string name="app_name">MentalMath</string>
     <string name="welcome_message">Welcome to Mental Math!</string>
+    <string name="work_page_message">Solve quickly!</string>
+    <string name="choose_operator">Choose operator</string>
+    <string name="hard_difficulty">Hard difficulty</string>
+    <string name="start_button">Start</string>
+    <string name="submit_button">Submit</string>
+    <string name="finish_button">Finish</string>
+    <string name="example_operand">120</string>
+    <string name="example_operator">+</string>
+    <string name="example_result">280</string>
     <string-array name="operators">
         <item>Addition</item>
         <item>Subtraction</item>
         <item>Multiplication</item>
         <item>Division</item>
     </string-array>
+    <string name="summary_header">Summary</string>
     <string name="summary_total_problems">Problems attempted %1$d</string>
     <string name="summary_accuracy">Accuracy %.2f%%</string>
     <string name="summary_speed">Average %.3fs per problem</string>
