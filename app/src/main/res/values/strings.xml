@@ -8,7 +8,7 @@
     <string name="submit_button">Submit</string>
     <string name="finish_button">Finish</string>
     <string name="example_operand">120</string>
-    <string name="example_operator">+</string>
+    <string name="example_operator">120 + 120</string>
     <string name="example_result">280</string>
     <string-array name="operators">
         <item>Addition</item>

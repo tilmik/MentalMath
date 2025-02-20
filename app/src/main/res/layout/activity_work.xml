@@ -11,9 +11,9 @@
         android:id="@+id/work_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:text="@string/work_page_message"
-        android:textSize="30sp"
+        android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -21,47 +21,23 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/operator"
+        android:id="@+id/problem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="30dp"
         android:text="@string/example_operator"
         android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/operand_first"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        android:layout_marginEnd="260dp"
-        android:text="@string/example_operand"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/operand_second"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="260dp"
-        android:layout_marginTop="150dp"
-        android:text="@string/example_operand"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/work_message" />
 
     <EditText
         android:id="@+id/result"
         android:layout_width="162dp"
         android:layout_height="72dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:inputType="number"
         android:maxLength="4"
         android:textAlignment="center"
@@ -71,13 +47,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/operator" />
+        app:layout_constraintTop_toBottomOf="@+id/problem" />
 
     <Button
         android:id="@+id/button_submit"
         android:layout_width="135dp"
         android:layout_height="67dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:text="@string/submit_button"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -88,7 +64,7 @@
         android:id="@+id/button_finish"
         android:layout_width="135dp"
         android:layout_height="67dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:text="@string/finish_button"
         android:textSize="24sp"
         android:backgroundTint="@color/design_default_color_error"
