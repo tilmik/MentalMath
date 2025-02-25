@@ -58,12 +58,11 @@ class MathManager(op: String, diff: Boolean) {
     }
 
     fun checkAnswer(prob: String, ans: String): Boolean {
-        var ansValue: Int
-        try {
-            ansValue = ans.toInt()
+        val ansValue: Int = try {
+            ans.toInt()
         } catch (nfe: NumberFormatException) {
             // not a valid int
-            ansValue = Int.MIN_VALUE
+            Int.MIN_VALUE
         }
 
         if (problem == prob && answer == ansValue) {

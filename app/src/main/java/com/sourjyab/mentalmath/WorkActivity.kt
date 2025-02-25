@@ -27,7 +27,8 @@ class WorkActivity : AppCompatActivity() {
     private lateinit var problemString: String
 
     private var totalTime: Long = 0
-    private var difficulty: Boolean = false
+    private var isFixed: Boolean = false
+    private var fixedNumber: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,8 +47,9 @@ class WorkActivity : AppCompatActivity() {
         }
 
         val intendedOperator = intent.getStringExtra("operator") ?: "Addition"
-        difficulty = intent.getBooleanExtra("difficulty", false)
-        manager = MathManager(intendedOperator, difficulty)
+        isFixed = intent.getBooleanExtra("fixed", false)
+        fixedNumber = intent.getIntExtra("number", 0)
+        manager = MathManager(intendedOperator, isFixed)
 
         buttonSubmit.setOnClickListener {
             if (etAnswer.text.isEmpty()) {
@@ -63,17 +65,15 @@ class WorkActivity : AppCompatActivity() {
                 }
 
                 totalTime += elapsedTime
-                populateOperand()
+                if (isFixed && manager.totalProblems >= fixedNumber)
+                    wrapUp()
+                else
+                    populateOperand()
             }
         }
 
         buttonFinish.setOnClickListener {
-            val data = Intent()
-            data.putExtra("score", manager.score)
-            data.putExtra("totalProblems", manager.totalProblems)
-            data.putExtra("totalTime", totalTime)
-            setResult(Activity.RESULT_OK, data)
-            finish()
+            wrapUp()
         }
 
         populateOperand()
@@ -84,5 +84,14 @@ class WorkActivity : AppCompatActivity() {
         tvProblem.text = problemString
         etAnswer.text.clear()
         startTime = timeSource.markNow()
+    }
+
+    private fun wrapUp() {
+        val data = Intent()
+        data.putExtra("score", manager.score)
+        data.putExtra("totalProblems", manager.totalProblems)
+        data.putExtra("totalTime", totalTime)
+        setResult(Activity.RESULT_OK, data)
+        finish()
     }
 }

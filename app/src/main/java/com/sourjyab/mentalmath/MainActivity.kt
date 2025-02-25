@@ -3,10 +3,12 @@ package com.sourjyab.mentalmath
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputFilter
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TableLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -17,13 +19,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.transition.Visibility
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var buttonStart: Button
+    private lateinit var startButton: Button
     private lateinit var operatorDropdown: AutoCompleteTextView
-    private lateinit var difficultySwitch: SwitchCompat
+    private lateinit var limitedSwitch: SwitchCompat
+    private lateinit var numberOfProblems: EditText
     private lateinit var summaryLayout: TableLayout
     private lateinit var totalProblemsTextView: TextView
     private lateinit var accuracyTextView: TextView
@@ -35,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        buttonStart = findViewById(R.id.button_start)
+        startButton = findViewById(R.id.button_start)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -58,7 +60,19 @@ class MainActivity : AppCompatActivity() {
         for (o in operators)
             allowedOperators.add(o)
 
-        difficultySwitch= findViewById(R.id.switch_difficulty)
+        limitedSwitch= findViewById(R.id.switch_limited)
+        numberOfProblems = findViewById(R.id.edit_number_of_problems)
+        numberOfProblems.filters = arrayOf<InputFilter>(MinMaxFilter(1, 99))
+        numberOfProblems.visibility = View.GONE
+        limitedSwitch.setOnCheckedChangeListener{_, isChecked->
+            if (isChecked) {
+                numberOfProblems.visibility = View.VISIBLE
+                limitedSwitch.text = resources.getString(R.string.fixed)
+            } else {
+                numberOfProblems.visibility = View.GONE
+                limitedSwitch.text = resources.getString(R.string.unlimited)
+            }
+        }
 
         resultLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()) { result ->
@@ -80,14 +94,23 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        buttonStart.setOnClickListener {
+        startButton.setOnClickListener {
             val operator = operatorDropdown.text.toString()
-            if (allowedOperators.contains(operator)) {
+            val isFixed = limitedSwitch.isChecked
+            val fixedNumber = try {
+                numberOfProblems.text.toString().toInt()
+            } catch (e: Exception) {
+                Int.MIN_VALUE
+            }
+
+            if (allowedOperators.contains(operator) &&
+                (!isFixed || fixedNumber in 1..99)) {
                 summaryLayout.visibility = View.GONE
 
                 val intent = Intent(this, WorkActivity::class.java)
                 intent.putExtra("operator", operator)
-                intent.putExtra("difficulty", difficultySwitch.isChecked)
+                intent.putExtra("fixed", isFixed)
+                intent.putExtra("number", fixedNumber)
                 resultLauncher.launch(intent)
             }
             else {
